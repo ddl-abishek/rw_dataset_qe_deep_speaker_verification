@@ -5,8 +5,8 @@ unprocessed_data: '../../VoxCeleb2/wav/*/*/*.wav'
 data:
     train_path: './train_tisv_norm_vox1_vox2'
     train_path_unprocessed: '../../VoxCeleb2/wav/dev/*/*.wav'
-    test_path: '/domino/datasets/local/abishek_rw_dataset_workflow/test_tisv_vox1_attempt2'
-    test_path_unprocessed: '/domino/datasets/local/abishek_rw_dataset_workflow/wav/*/*/*.wav'
+    test_path: '/domino/datasets/local/{enter dataset name}/test_tisv_vox1'
+    test_path_unprocessed: '/domino/datasets/local/{enter dataset name}/wav/*/*/*.wav'
     data_preprocessed: !!bool "true" 
     sr: 16000
     nfft: 512 #For mel spectrogram preprocess
