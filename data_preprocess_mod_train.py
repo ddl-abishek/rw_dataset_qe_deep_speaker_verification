@@ -101,11 +101,11 @@ def extract_speakerwise_spec(speaker,test_dataset_path = hp.data.test_path_unpro
             else:
                 sessions_spec = np.vstack(utterances_spec)
 
-        print(speaker," : ",sessions_spec.shape)
-        if task =='train':      # save spectrogram as numpy file
-            np.save(os.path.join(hp.data.train_path, f'{speaker}.npy'), sessions_spec)
-        elif task == 'test':
-                np.save(os.path.join(hp.data.test_path, f'{speaker}.npy'), sessions_spec)
+    print(speaker," : ",sessions_spec.shape)
+    if task =='train':      # save spectrogram as numpy file
+        np.save(os.path.join(hp.data.train_path, f'{speaker}.npy'), sessions_spec)
+    elif task == 'test':
+        np.save(os.path.join(hp.data.test_path, f'{speaker}.npy'), sessions_spec)
 
 
 if __name__ == "__main__":
