@@ -48,6 +48,10 @@ def silence_detection(utter):
     return intervals
 
 def extract_speakerwise_spec(speaker,test_dataset_path = hp.data.test_path_unprocessed[:-10],single_utterance=True,task='test'):
+    
+    if not(os.path.exits(hp.data.test_path)):
+        os.makedirs(hp.data.test_path)
+        
     speaker_path = os.path.join(test_dataset_path,speaker)
     sessions_spec = []
 
