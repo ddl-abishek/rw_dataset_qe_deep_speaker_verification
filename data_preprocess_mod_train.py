@@ -48,9 +48,12 @@ def silence_detection(utter):
     return intervals
 
 def extract_speakerwise_spec(speaker,test_dataset_path = hp.data.test_path_unprocessed[:-10],single_utterance=True,task='test'):
-    
     if not(os.path.exists(hp.data.test_path)):
-        os.makedirs(hp.data.test_path)
+        try:
+            os.makedirs(hp.data.test_path)
+        except:
+            break
+         
         
     speaker_path = os.path.join(test_dataset_path,speaker)
     sessions_spec = []
@@ -62,12 +65,10 @@ def extract_speakerwise_spec(speaker,test_dataset_path = hp.data.test_path_unpro
 
         utterances_spec = []
         for utter_name in os.listdir(session_path):
-            
             if single_utterance and len(sessions_spec)>0:
                 break
 
             if utter_name[-4:] == '.wav':
-
                 utter_path = os.path.join(session_path, utter_name)         # path of each utterance
                 utter, sr = librosa.core.load(utter_path, hp.data.sr)        # load utterance audio
 
@@ -77,7 +78,6 @@ def extract_speakerwise_spec(speaker,test_dataset_path = hp.data.test_path_unpro
                 bits_per_sample = int(bits_per_sample.subtype[-2:])
 
                 utter /= 2**(bits_per_sample-1)
-
                 utter_min_len = (hp.data.tisv_frame * hp.data.hop + hp.data.window) * hp.data.sr    # lower bound of utterance length
 
                 for interval in intervals:
